@@ -10,10 +10,13 @@ This is the starter package for FHS students to learn about ES6 modules.
 ## Usage
 
 - `git clone git@github.com:webpapaya/fhs-modules.git`
+- `npm ci`
 - `npm run start`
 
 ## Assignment
 
+- We'll be building a quiz application
+- This assignment includes the game logic only (no ui)
 - define and export a list of questions from `questions.js`
   - a question looks like this: `{ question: 'some question', correctAnswer: 'a', a: 'answer', b: '', c: '', d: ''  }`
 - implement a function `askQuestion()` in `quiz.js`
