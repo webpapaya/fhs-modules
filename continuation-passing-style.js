@@ -26,7 +26,7 @@ multiplyBy2(3, (result1) => {
 
 
 const createTimeout = (timeout) => {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         if (timeout === 0) {
             reject()
         } else {
@@ -34,6 +34,19 @@ const createTimeout = (timeout) => {
         }
     })
 }
+
+const main = async () => {
+    await createTimeout(2000)
+    console.log('1')
+
+    await createTimeout(4000)
+    console.log('2')
+
+    await createTimeout(4000)
+    console.log('3')
+}
+    
+
 
 createTimeout(1000)
     .then(() => { console.log('1') })
@@ -43,14 +56,41 @@ createTimeout(1000)
     .then(() => { console.log('3') })
 
 
-
-const createTimeout = (timeout) => {
-    // TODO: implement me
+function University(name) {
+    this.name = name
 }
-    
-createTimeout(2000)
-    .then(() => { console.log('1') })
-    .then(() => createTimeout(4000))
-    .then(() => { console.log('2') })
-    .then(() => createTimeout(4000))
-    .then(() => { console.log('3') })
+
+University.prototype.isBestUniversity = function () {
+    return this.name === "FHS"
+}
+
+const fhs = new University("FHS")
+console.log(fhs.isBestUniversity())
+
+class University {
+    constructor(name) {
+        this.name = name
+    }
+
+    isBestUniversity() {
+        return this.name === 'FHS'
+    }
+}
+
+const fhs = new University("FHS")
+console.log(fhs.isBestUniversity())
+
+
+const createPromiseListener = () => {
+    let returnResolve;
+    const promise = new Promise((resolve) => { returnResolve = resolve })
+    return {promise, resolve: returnResolve};
+}
+it("", async () => {
+    const { promise, returnResolve } = createPromiseListener()
+    runInterceptor(returnResolve)
+    await promise
+})
+
+
+
