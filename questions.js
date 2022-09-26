@@ -12,7 +12,7 @@ const questions = [
     correctAnswer: "c",
     a: "The Lord of the Rings",
     b: "Spirited Away",
-    c: "Princes Mononoke",
+    c: "Princess Mononoke",
     d: "Daniel der Zauberer",
   },
   {
