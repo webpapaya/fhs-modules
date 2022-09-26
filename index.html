@@ -5,13 +5,41 @@
   </head>
   <body>
     <script>
-      function myFunction () { console.log("hallo1")}
+      function counterFunction(name) {
+        let i = 0;
+        return function () {
+          i++
+          console.log(name, i)
+        }
+      }
+
+      const counter1 = counterFunction("counter1")
+      counter1()
+      counter1()
+      counter1()
+
+      const counter2 = counterFunction("counter2")
+      counter2()
+      counter2()
+      counter2()
     </script>
+
     <script>
-      function myFunction () { console.log("hallo2")}
-    </script>
-    <script>
-      myFunction()
+      function counterObject(name) {
+        let i = 0;
+        return {
+          add: function () { i++ },
+          subtract: function () { i-- },
+          print: function () { console.log(name, i) }
+        }
+      }
+
+      const counter3 = counterObject("counterObject1")
+      counter3.add()
+      counter3.add()
+      counter3.add()
+      counter3.subtract()
+      counter3.print()
     </script>
     <p>
       Start this exercise by adding a new .js file and include it in this file with type module:
