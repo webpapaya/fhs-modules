@@ -4,6 +4,25 @@
     <title>FHS-Modules</title>
   </head>
   <body>
+    <script>
+      let university = "FHS"
+      function myUniversity() {
+        let university1 = "FHS"
+
+        if (true) {
+          let university1 = "FHS"
+          university1 = "FHS overwritten"
+          console.log('if', university1)
+        }
+
+        console.log('function', university1)
+      }
+      myUniversity()
+    </script>
+
+    <script>
+      console.log('in global', university)
+    </script>
     <p>
       Start this exercise by adding a new .js file and include it in this file with type module:
     </p>
