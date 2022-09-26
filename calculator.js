@@ -1,3 +1,4 @@
+
 let i = 0
 
 export function increment() {
@@ -7,3 +8,5 @@ export function increment() {
 export function getValue() {
     return i
 }
+
+export { print } from "./print"
