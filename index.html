@@ -5,24 +5,30 @@
   </head>
   <body>
     <script>
-      let university = "FHS"
-      function myUniversity() {
-        let university1 = "FHS"
-
-        if (true) {
-          let university1 = "FHS"
-          university1 = "FHS overwritten"
-          console.log('if', university1)
-        }
-
-        console.log('function', university1)
-      }
-      myUniversity()
+      // // const university = "FHS"
+      // // university = "test"
+      //
+      // const immutable = { some: "value"}
+      // immutable.some = "updated"
+      // console.log(immutable.some)
+      //
+      // immutable = { some: "updated"}
+      // // ^^^^^^
+      // // TypeError Assignment to constant variable
+    </script>
+    <script>
+      // const immutable2 = Object.freeze({ some: "value"})
+      // immutable2.some = "updated"
+      // console.log(immutable2.some)
     </script>
 
     <script>
-      console.log('in global', university)
+      // const immutable2 = Object.freeze({ some: "value", object: { value: 1 }})
+      // immutable2.object.value = 2
+      // console.log(immutable2.object.value)
     </script>
+
+
     <p>
       Start this exercise by adding a new .js file and include it in this file with type module:
     </p>
