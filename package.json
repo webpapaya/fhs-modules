@@ -2,7 +2,7 @@
   "name": "fhs-modules",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index1.js",
   "scripts": {
     "start": "http-server ."
   },
