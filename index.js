@@ -1,22 +1,18 @@
-function resolveValueIn(value, timeoutInMS) {
+function resolveValueIn(timeoutInMS) {
     return new Promise((resolve) => {
-        setTimeout(() => { resolve(value) }, timeoutInMS)
+        setTimeout(() => { resolve() }, timeoutInMS)
     })
 }
 
-const myFunction = function () {
-    return resolveValueIn("first", 1000)
-        .then(function (arg) {
-            console.log(arg)
-            return resolveValueIn("second", 2000)
-        })
-        .then(function (arg) {
-            console.log(arg);
-            return resolveValueIn("third", 3000)
-        })
-        .then(function (arg) {
-            console.log(arg)
-        });
+async function myFunction() {
+    await resolveValueIn(1000)
+    console.log("first")
+
+    await resolveValueIn(2000)
+    console.log("second")
+
+    await resolveValueIn(3000)
+    console.log("third")
 }
 
 
