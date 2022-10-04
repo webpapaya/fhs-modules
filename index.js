@@ -7,14 +7,21 @@ function createTimeout(timeoutInMS) {
 }
 
 createTimeout(1000)
-    .then(() => console.log('after timeout 1'))
+    .then(() => {
+        console.log('after timeout 1');
+
+        return createTimeout(1000)
+            .then(() => {
+                console.log('after timeout 2');
+
+                return createTimeout(2000)
+                    .then(() => console.log('after timeout 3'))
+            })
+    })
     .then(() => createTimeout(1000))
-    .then(() => console.log('after timeout 2'))
-    .then(() => createTimeout(1000))
-    .then(() => console.log('after timeout 3'))
-    .then(() => createTimeout(1000))
-    .then(() => console.log('after timeout 4'))
-    .then(() => createTimeout(1000))
+    .then(() => {
+        console.log('after timeout 4')
+    })
 
 // delay 1000
 // first
