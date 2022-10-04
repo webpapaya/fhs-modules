@@ -1,9 +1,10 @@
-function addNumbers (a, b, whenDone) {
-    whenDone(a + b)
-}
+const resolvedPromise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(1), 10000)
+})
 
-function whenDone(result) {
-    console.log(result)
-}
+const rejectedPromise = new Promise((resolve, reject) => {
+    setTimeout(() => reject(1), 10000)
+})g
 
-addNumbers(1, 2, whenDone)
+
+setInterval(() => console.log({ resolvedPromise, rejectedPromise }), 1000)
