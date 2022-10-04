@@ -1,38 +1,27 @@
-const fetchAsync = (url) => {
+function resolveValueIn(value, timeoutInMS) {
     return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('executing', url)
-            resolve({data: url});
-            console.log('execution done', url)
-        }, Math.random() * 1000)
-    });
+        setTimeout(() => { resolve(value) }, timeoutInMS)
+    })
 }
 
-function a() {}
-function b() {}
-function c() {}
-
-async function fetchBestFriendsAddress() {
-    try {
-        const [user, weather] = await Promise.all([
-            fetchAsync('/api/current-user'),
-            fetchAsync('/api/weather')
-        ])
-
-        const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
-        const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
-
-        console.log(address)
-    } catch(e) {
-        console.error(e)
-    }
-}
-
-async function main() {
-    a()
-    b()
-    await fetchBestFriendsAddress()
-    c()
+const myFunction = function () {
+    return resolveValueIn("first", 1000)
+        .then(function (arg) {
+            console.log(arg)
+            return resolveValueIn("second", 2000)
+        })
+        .then(function (arg) {
+            console.log(arg);
+            return resolveValueIn("third", 3000)
+        })
+        .then(function (arg) {
+            console.log(arg)
+        });
 }
 
 
+async function myAsyncfunction() {
+    await myFunction()
+}
+
+myAsyncfunction()
