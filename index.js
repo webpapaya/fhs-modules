@@ -13,15 +13,19 @@ function b() {}
 function c() {}
 
 async function fetchBestFriendsAddress() {
-    const [user, weather] = await Promise.all([
-        fetchAsync('/api/current-user'),
-        fetchAsync('/api/weather')
-    ])
+    try {
+        const [user, weather] = await Promise.all([
+            fetchAsync('/api/current-user'),
+            fetchAsync('/api/weather')
+        ])
 
-    const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
-    const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
+        const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
+        const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
 
-    console.log(address)
+        console.log(address)
+    } catch(e) {
+        console.error(e)
+    }
 }
 
 async function main() {
