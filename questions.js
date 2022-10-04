@@ -42,3 +42,5 @@ export function answerQuestion(question, answer) {
   if (answer === correctAnswer) return true;
   else return false;
 }
+
+export async function getQuestions() {}
