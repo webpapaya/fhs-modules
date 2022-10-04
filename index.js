@@ -1,38 +1,24 @@
-const fetchAsync = (url) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('executing', url)
-            resolve({data: url});
-            console.log('execution done', url)
-        }, Math.random() * 1000)
-    });
+function createTimeout(timeoutInMS) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve()
+        }, timeoutInMS)
+    })
 }
 
-function a() {}
-function b() {}
-function c() {}
+createTimeout(1000)
+    .then(() => console.log('after timeout 1'))
+    .then(() => createTimeout(1000))
+    .then(() => console.log('after timeout 2'))
+    .then(() => createTimeout(1000))
+    .then(() => console.log('after timeout 3'))
+    .then(() => createTimeout(1000))
+    .then(() => console.log('after timeout 4'))
+    .then(() => createTimeout(1000))
 
-async function fetchBestFriendsAddress() {
-    try {
-        const [user, weather] = await Promise.all([
-            fetchAsync('/api/current-user'),
-            fetchAsync('/api/weather')
-        ])
-
-        const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
-        const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
-
-        console.log(address)
-    } catch(e) {
-        console.error(e)
-    }
-}
-
-async function main() {
-    a()
-    b()
-    await fetchBestFriendsAddress()
-    c()
-}
-
-
+// delay 1000
+// first
+// delay 2000
+// second
+// delay 2000
+// third
