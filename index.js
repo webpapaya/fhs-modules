@@ -8,9 +8,27 @@ const fetchAsync = (url) => {
     });
 }
 
-fetchAsync('/api/current-user')
-    .then((user) => fetchAsync(`/api/users/${user.id}/best-friend`))
-    .then((bestFriend) => fetchAsync(`/api/users/${bestFriend.id}/address`))
-    .then((data) => console.log(data))
-    .catch((data) => console.error(data))
+function a() {}
+function b() {}
+function c() {}
+
+async function fetchBestFriendsAddress() {
+    const [user, weather] = await Promise.all([
+        fetchAsync('/api/current-user'),
+        fetchAsync('/api/weather')
+    ])
+
+    const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
+    const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
+
+    console.log(address)
+}
+
+async function main() {
+    a()
+    b()
+    await fetchBestFriendsAddress()
+    c()
+}
+
 
