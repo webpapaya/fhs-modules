@@ -1,27 +1,9 @@
-const question = {
-    question: "Whatever",
-    a: 'a',
-    b: 'b',
-    c: 'c',
-    d: 'd',
-    correctAnswer: 'a'
+function addNumbers (a, b, whenDone) {
+    whenDone(a + b)
 }
 
-function askQuestion() {
-    const copy = { ...question }
-    delete copy.correctAnswer
-    return {
-        question: question.question,
-        a: question.a,
-        b: question.b,
-        c: question.c,
-        d: question.d,
-    }
+function whenDone(result) {
+    console.log(result)
 }
 
-function listAllQuestions() {
-    return question
-}
-
-console.log(askQuestion())
-console.log(listAllQuestions())
+addNumbers(1, 2, whenDone)
