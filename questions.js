@@ -1,3 +1,5 @@
+import { delay } from "./delay.js";
+
 const questions = [
   {
     question: "What is the best Series?",
@@ -25,20 +27,7 @@ const questions = [
   },
 ];
 
-export function askQuestion() {
-  const randomNumber = Math.floor(Math.random() * questions.length);
-  const clonedQuestion = { ...questions[randomNumber] };
-  delete clonedQuestion.correctAnswer;
-  return clonedQuestion;
-}
-
-export function answerQuestion(question, answer) {
-  const matchigQuestionIndex = questions.findIndex(
-    (staticQuestions) => staticQuestions.question === question.question
-  );
-
-  const correctAnswer = questions[matchigQuestionIndex].correctAnswer;
-
-  if (answer === correctAnswer) return true;
-  else return false;
+export async function getQuestions() {
+  await delay();
+  return questions;
 }
