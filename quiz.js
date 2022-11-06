@@ -1,4 +1,5 @@
 import { getQuestions } from "./questions.js";
+import { onRouteChange, setUpLinks } from "./routing.js";
 
 let questions = undefined;
 
@@ -28,4 +29,6 @@ export async function answerQuestion(question, answer) {
   else return false;
 }
 
+onRouteChange();
+setUpLinks();
 executeQuiz();
