@@ -4,7 +4,6 @@ export function setUpLinks() {
       const pathname = new URL(window.location).pathname;
       evt.preventDefault();
       history.pushState({ id: 1 }, null, evt.target.href);
-      console.log(history);
       onRouteChange();
     });
   });

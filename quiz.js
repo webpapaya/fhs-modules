@@ -29,6 +29,10 @@ export async function answerQuestion(question, answer) {
   else return false;
 }
 
+window.addEventListener("popstate", (event) => {
+  onRouteChange();
+});
+
 onRouteChange();
 setUpLinks();
 executeQuiz();
