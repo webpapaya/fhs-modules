@@ -1,4 +1,5 @@
 import { getQuestions } from "./questions.js";
+import { onRouteChange, setUpLinks } from "./routing.js";
 
 let questions = undefined;
 
@@ -28,4 +29,10 @@ export async function answerQuestion(question, answer) {
   else return false;
 }
 
+window.addEventListener("popstate", () => {
+  onRouteChange();
+});
+
+onRouteChange();
+setUpLinks();
 executeQuiz();
