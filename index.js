@@ -1,38 +1,52 @@
-const fetchAsync = (url) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('executing', url)
-            resolve({data: url});
-            console.log('execution done', url)
-        }, Math.random() * 1000)
-    });
-}
+class Link extends HTMLElement {
+    #to = ''
+    #text = ''
 
-function a() {}
-function b() {}
-function c() {}
+    static get observedAttributes() {
+        return ['to', 'text']
+    }
 
-async function fetchBestFriendsAddress() {
-    try {
-        const [user, weather] = await Promise.all([
-            fetchAsync('/api/current-user'),
-            fetchAsync('/api/weather')
-        ])
+    attributeChangedCallback(property, _oldValue, newValue) {
+        if (property === 'to') {
+            this.#to = newValue
+        } else if (property === 'text') {
+            this.#text = newValue
+        }
 
-        const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
-        const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
+        this.render()
+    }
 
-        console.log(address)
-    } catch(e) {
-        console.error(e)
+    connectedCallback() {
+        this.render()
+    }
+
+    render() {
+        this.innerHTML = `<a href="${this.#to}">${this.#text}</a>`
+
+        this.querySelector('a').addEventListener('click', (evt) => {
+            evt.preventDefault()
+            console.log('hallo')
+        })
     }
 }
 
-async function main() {
-    a()
-    b()
-    await fetchBestFriendsAddress()
-    c()
+const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000))
+
+class HelloWorld extends HTMLElement {
+    async connectedCallback() {
+        this.innerHTML = "loading"
+
+        await sleep()
+
+        const list = [1,2,3,4]
+        this.innerHTML = `
+            <fhs-link to="test" text="hallo"></fhs-link>
+            <ul>
+                ${list.map((element) => `<li>${element}</li>`).join('')}
+            </ul>    
+        `
+    }
 }
 
-
+customElements.define('fhs-link', Link)
+customElements.define('fhs-hello-world', HelloWorld)
