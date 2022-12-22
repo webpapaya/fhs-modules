@@ -1,38 +1,18 @@
-const fetchAsync = (url) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('executing', url)
-            resolve({data: url});
-            console.log('execution done', url)
-        }, Math.random() * 1000)
-    });
-}
+import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@7/+esm';
 
-function a() {}
-function b() {}
-function c() {}
+const database = await openDB('fhs-quiz', 1, {
+    upgrade(db, currentVersion) {
+         if (currentVersion === 0) {
+            db.createObjectStore('questions', { keyPath: 'id' })
 
-async function fetchBestFriendsAddress() {
-    try {
-        const [user, weather] = await Promise.all([
-            fetchAsync('/api/current-user'),
-            fetchAsync('/api/weather')
-        ])
-
-        const bestFriend = await fetchAsync(`/api/users/${user.id}/best-friend`)
-        const address = await fetchAsync(`/api/users/${bestFriend.id}/address`)
-
-        console.log(address)
-    } catch(e) {
-        console.error(e)
+            const userStore = db.createObjectStore('user', { keyPath: 'id' })
+            userStore.createIndex('userNameIdx', 'name')
+        }
     }
-}
+})
 
-async function main() {
-    a()
-    b()
-    await fetchBestFriendsAddress()
-    c()
-}
+await database.put('user', { id: 1, name: "Sepp1" })
+await database.put('user', { id: 2, name: "Sepp2" })
+await database.put('user', { id: 3, name: "Sepp3" })
 
-
+window.database = database
